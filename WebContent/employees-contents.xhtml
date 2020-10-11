@@ -1,0 +1,82 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<p:commandButton value="log out" action="login?faces-redirect=true"
+		immediate="true" style="float: right" />
+	<br />
+
+	<div align="center">
+		<BR />
+		<h2>
+			<p:outputLabel value="Employees list" styleClass="contentsTitle" />
+		</h2>
+		<h:form id="form">
+
+			<p:dataTable value="#{backingEmployees.findAllEmployees()}"
+				var="employee" styleClass="table" headerClass="table-header"
+				footerClass="table-footer" rowClasses="table-odd-row,table-even-row">
+
+				<p:column>
+					<f:facet name="header">Id</f:facet>
+				#{employee.id}
+			</p:column>
+
+				<p:column>
+					<f:facet name="header">First name</f:facet>
+				#{employee.firstName}
+			</p:column>
+
+				<p:column>
+					<f:facet name="header">Last name</f:facet>
+				#{employee.lastName}
+			</p:column>
+
+				<p:column>
+					<f:facet name="header">Company</f:facet>
+				#{employee.company}
+			</p:column>
+
+				<p:column>
+					<f:facet name="header">Registration</f:facet>
+				#{employee.registration}
+			</p:column>
+
+				<p:column>
+					<f:facet name="header">Salary</f:facet>
+					<p:outputLabel value="#{employee.salary}">
+						<f:convertNumber currencySymbol="$" type="currency" />
+					</p:outputLabel>
+				</p:column>
+
+				<p:column style="width: 100px">
+					<p:commandButton ajax="false" update="cc" value="Edit" id="edit"
+						action="#{backingEmployees.edit(employee)}" icon="ui-icon-pencil" />
+				</p:column>
+
+				<p:column style="width: 125px">
+					<p:commandButton ajax="false" update="cc" value="Delete"
+						id="delete" action="#{backingEmployees.delete(employee)}"
+						icon="ui-icon-trash" />
+				</p:column>
+
+				<f:facet name="footer">
+					<p:outputLabel
+						value="Total of employees: #{backingEmployees.findAllEmployees().size()}" />
+				</f:facet>
+			</p:dataTable>
+
+			<br />
+			<p:commandButton value="Add employee"
+				action="add-employee?faces-redirect=true" icon="ui-icon-plus">
+				<f:ajax />
+			</p:commandButton>
+		</h:form>
+	</div>
+	<br />
+
+</ui:composition>

@@ -1,0 +1,76 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<p:commandButton value="log out" action="login?faces-redirect=true"
+		immediate="true" style="float: right" />
+	<br />
+
+	<div align="center">
+		<br />
+
+		<h2>
+			<p:outputLabel value="Update employee" styleClass="contentsTitle" />
+		</h2>
+
+		<f:event listener="#{backingEditEmployee.init()}" type="preRenderView" />
+		<br /> <br />
+		<h:form id="form">
+
+			<p:messages id="messages" showDetail="true" closable="true">
+				<p:autoUpdate />
+			</p:messages>
+
+			<p:panelGrid columns="2">
+				Id:
+				<p:outputLabel value="#{backingEditEmployee.employee.id}" />
+				
+				First name:
+			<p:inputText id="firstName"
+					value="#{backingEditEmployee.employee.firstName}" required="true"
+					requiredMessage="'First name' cannot be empty " />
+			
+			Last name:
+			<p:inputText id="lastName"
+					value="#{backingEditEmployee.employee.lastName}" required="true"
+					requiredMessage="'Last name' cannot be empty " />
+			
+			Company:
+			<p:selectOneMenu id="subscriptions"
+					value="#{backingEditEmployee.employee.company}">
+					<f:selectItems value="#{backingEditEmployee.companiesList}"
+						var="company" itemValue="#{company.name}"
+						itemLabel="#{company.name}" />
+				</p:selectOneMenu>
+				
+			Registration:
+			<p:inputText id="registration"
+					value="#{backingEditEmployee.employee.registration}"
+					validatorMessage="Registration must be of 5 chars">
+					<f:validateLength minimum="5" maximum="5" />
+				</p:inputText>
+			
+			Salary ($):
+			<p:inputText id="salary"
+					value="#{backingEditEmployee.employee.salary}" />
+			</p:panelGrid>
+
+			<br />
+
+			<div align="center">
+				<p:commandButton value="Cancel" immediate="true" action="employees?faces-redirect=true"
+					icon="ui-icon-close" />
+				<p:commandButton value="Update" style="margin-left: 5px"
+					action="#{backingEditEmployee.updateEmployee()}"
+					icon="ui-icon-refresh" />
+			</div>
+
+		</h:form>
+	</div>
+	<br />
+
+</ui:composition>

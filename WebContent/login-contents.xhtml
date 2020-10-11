@@ -1,0 +1,39 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<div align="center">
+		<br />
+		<h:form id="form">
+
+			<p:messages id="messages" showDetail="true" closable="true">
+				<p:autoUpdate />
+			</p:messages>
+
+			<h1>
+				<p:outputLabel id="loginArea" value="Login area" />
+			</h1>
+			<br />
+			<br />
+			<br />
+			<p:panelGrid columns="2">
+				<p:outputLabel value="Login:" />
+				<p:inputText id="login" value="#{loginMB.user.login}"
+					required="true" requiredMessage="Login cannot be empty" />
+
+				<p:outputLabel value="Password:" />
+				<p:password id="password" value="#{loginMB.user.password}"
+					required="true" requiredMessage="Password cannot be empty" />
+			</p:panelGrid>
+			<br />
+			<p:commandButton id="button" value="Enter"
+				action="#{loginMB.doLogin()}" />
+		</h:form>
+	</div>
+	<br />
+
+</ui:composition>

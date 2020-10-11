@@ -1,0 +1,74 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<p:commandButton value="log out" action="login?faces-redirect=true"
+		immediate="true" style="float: right" />
+	<br />
+	
+	<div align="center">
+
+		<h2>
+			<p:outputLabel value="Add new employee" styleClass="contentsTitle" />
+		</h2>
+		<f:event listener="#{backingAddEmployee.init()}" type="preRenderView" />
+		<br /> <br />
+
+		<h:form>
+
+			<p:messages id="messages" showDetail="true" closable="true">
+				<p:autoUpdate />
+			</p:messages>
+
+			<p:panelGrid columns="2">
+			
+			First name:
+			<p:inputText id="firstName"
+					value="#{backingAddEmployee.employee.firstName}" required="true"
+					requiredMessage="'First name' cannot be empty " />	
+			
+			Last name:
+			<p:inputText id="lastName"
+					value="#{backingAddEmployee.employee.lastName}" required="true"
+					requiredMessage="'Last name' cannot be empty " />
+			
+			Company:
+			<p:selectOneMenu value="#{backingAddEmployee.employee.company}">
+					<f:selectItem itemValue="#{null}"
+						itemLabel="--- Select a company ---" />
+					<f:selectItems value="#{backingAddEmployee.companiesList}"
+						var="company" itemValue="#{company.name}"
+						itemLabel="#{company.name}" />
+				</p:selectOneMenu>
+				
+			Registration:
+			<p:inputText id="registration"
+					validatorMessage="Registration must be of 5 chars"
+					value="#{backingAddEmployee.employee.registration}">
+					<f:validateLength minimum="5" maximum="5" />
+				</p:inputText>
+			
+			Salary ($):
+			<p:inputText id="salary"
+					value="#{backingAddEmployee.employee.salary}" />
+			</p:panelGrid>
+
+			<br />
+			<div align="center">
+				<p:commandButton value="Cancel" immediate="true"
+					action="employees?faces-redirect=true" icon="ui-icon-close">
+					<f:ajax />
+				</p:commandButton>
+
+				<p:commandButton value="Save"
+					action="#{backingAddEmployee.saveEmployee()}" icon="ui-icon-disk" />
+			</div>
+		</h:form>
+	</div>
+	<br />
+
+</ui:composition>
