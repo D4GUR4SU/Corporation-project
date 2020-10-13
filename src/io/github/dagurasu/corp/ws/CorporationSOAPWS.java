@@ -15,7 +15,9 @@ import io.github.dagurasu.corp.backing.BackingEmployees;
 import io.github.dagurasu.corp.dao.TokenDao;
 import io.github.dagurasu.corp.exception.AutorizationException;
 import io.github.dagurasu.corp.exception.EmployeeValidatorException;
+import io.github.dagurasu.corp.filter.Filters;
 import io.github.dagurasu.corp.model.Employee;
+import io.github.dagurasu.corp.model.ListEmployees;
 import io.github.dagurasu.corp.model.TokenUser;
 import io.github.dagurasu.corp.validator.EmployeeValidator;
 
@@ -26,20 +28,22 @@ public class CorporationSOAPWS {
 	BackingEmployees backingEmployees = new BackingEmployees();
 
 	@WebMethod(operationName = "AllEmployees")
-	@WebResult(name = "employee")
-	public List<Employee> getEmployees() {
+	@WebResult(name = "employees")
+	public ListEmployees getEmployees(@WebParam(name = "filter") Filters filters) {
 
-		System.out.println("Calling getEmployees...");
+		System.out.println("Calling getEmployees()...");
 
 		List<Employee> list = backingEmployees.findAllEmployees();
-		return list;
+		return new ListEmployees(list);
 
 	}
 
-	@WebMethod(action = "RegisterEmployee")
+	@WebMethod(action = "RegisterEmployee", operationName = "RegisterEmployee")
 	@WebResult(name = "employee")
-	public Employee registerEmployee(@WebParam(name = "token", header = true) TokenUser token,
-			@WebParam(name = "employee") Employee employee) throws AutorizationException, EmployeeValidatorException {
+	public Employee registerEmployee(
+			@WebParam(name = "token", header = true) TokenUser token,
+			@WebParam(name = "employee") Employee employee) 
+					throws AutorizationException, EmployeeValidatorException {
 
 		System.out.println("Resgistering employee..." + employee + ", Token: " + token);
 

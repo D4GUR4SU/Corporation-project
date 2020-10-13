@@ -47,17 +47,17 @@ public class User {
 		private String login;
 		private String pass;
 
-		public Builder comNome(String name) {
+		public Builder name(String name) {
 			this.name = name;
 			return this;
 		}
 
-		public Builder comLogin(String login) {
+		public Builder login(String login) {
 			this.login = login;
 			return this;
 		}
 
-		public Builder comSenha(String pass) {
+		public Builder password(String pass) {
 			this.pass = pass;
 			return this;
 		}

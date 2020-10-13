@@ -23,10 +23,10 @@ public class TokenDao {
 	}
 	
 	private void userInMAp() {
-		USER.put(new TokenUser("AAA", parseDate("31/12/2015")), new User.Builder().comNome("Douglas").comLogin("doug").comSenha("pass").build());
-		USER.put(new TokenUser("BBB", parseDate("31/12/2015")), new User.Builder().comNome("Eliot").comLogin("eliot").comSenha("pass").build());
-		USER.put(new TokenUser("CCC", parseDate("31/12/2015")), new User.Builder().comNome("Walter").comLogin("walter").comSenha("pass").build());
-		USER.put(new TokenUser("DDD", parseDate("31/12/2015")), new User.Builder().comNome("Barry").comLogin("barry").comSenha("pass").build());
+		USER.put(new TokenUser("AAA", parseDate("13/10/2020")), new User.Builder().name("Douglas").login("doug").password("pass").build());
+		USER.put(new TokenUser("BBB", parseDate("13/10/2020")), new User.Builder().name("Eliot").login("eliot").password("pass").build());
+		USER.put(new TokenUser("CCC", parseDate("13/10/2020")), new User.Builder().name("Walter").login("walter").password("pass").build());
+		USER.put(new TokenUser("DDD", parseDate("13/10/2020")), new User.Builder().name("Barry").login("barry").password("pass").build());
 	}
 
 

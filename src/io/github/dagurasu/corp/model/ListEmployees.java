@@ -18,7 +18,7 @@ public class ListEmployees {
 		this.employees = employees;
 	}
 
-	public ListEmployees() {
+	 ListEmployees() {
 	}
 
 	public List<Employee> getEmployees() {
