@@ -2,7 +2,9 @@ package io.github.dagurasu.corp.backing;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -18,6 +20,7 @@ public class BackingEmployees implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private EmployeeBO employeeBO = new EmployeeBO();
+	private static Map<Long, Employee> EMPLOYEES = new LinkedHashMap<>();
 
 	@ManagedProperty(value = "#{backingEditEmployee}")
 	private BackingEditEmployee backingEditEmployee;
@@ -41,5 +44,9 @@ public class BackingEmployees implements Serializable {
 
 	public List<Employee> findAllEmployees() {
 		return employeeBO.findAllEmployees();
+	}
+
+	public void register(Employee employee) {
+		EMPLOYEES.put(employee.getId(), employee);
 	}
 }

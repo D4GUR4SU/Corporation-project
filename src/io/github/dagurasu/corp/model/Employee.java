@@ -1,7 +1,8 @@
 package io.github.dagurasu.corp.model;
 
-import java.util.Date;
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement
 public class Employee {
 
 	private long id;
@@ -10,8 +11,10 @@ public class Employee {
 	private String company;
 	private String registration;
 	private double salary;
-	private Date date;
 
+	public Employee() {
+	}
+	
 	public long getId() {
 		return id;
 	}
@@ -60,18 +63,10 @@ public class Employee {
 		this.salary = salary;
 	}
 
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
 	@Override
 	public String toString() {
 		return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", company=" + company
-				+ ", registration=" + registration + ", salary=" + salary + ", date=" + date + "]";
+				+ ", registration=" + registration + ", salary=" + salary + "]";
 	}
 
 }

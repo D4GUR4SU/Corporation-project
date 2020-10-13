@@ -30,22 +30,25 @@ public class CustomSystemEventListener implements SystemEventListener {
 			if (result.equals("Created")) {
 				
 				Company company = new Company();
-				company.setName("Sanders");
+				company.setName("Dagurasu Corp.");
+				companiesBO.insertCompany(company);
+				
+				company.setName("Evil Corp.");
+				companiesBO.insertCompany(company);
+				
+				company.setName("F.Society");
+				companiesBO.insertCompany(company);
+
+				company.setName("Genesys");
+				companiesBO.insertCompany(company);
+				
+				company.setName("Scorpion");
 				companiesBO.insertCompany(company);
 				
 				company.setName("S.T.A.R");
 				companiesBO.insertCompany(company);
 				
-				company.setName("Genesys");
-				companiesBO.insertCompany(company);
-				
-				company.setName("MicroWaves");
-				companiesBO.insertCompany(company);
-				
-				company.setName("Dagurasu Corp");
-				companiesBO.insertCompany(company);
-				
-				company.setName("F.Society");
+				company.setName("Raz3R");
 				companiesBO.insertCompany(company);
 			}
 

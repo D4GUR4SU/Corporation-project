@@ -2,8 +2,28 @@ package io.github.dagurasu.corp.model;
 
 public class User {
 
+	private String name;
 	private String login;
 	private String password;
+
+	public User() {
+		super();
+	}
+
+	public User(String name, String login, String password) {
+		super();
+		this.name = name;
+		this.login = login;
+		this.password = password;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 
 	public String getLogin() {
 		return login;
@@ -19,6 +39,32 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public static class Builder {
+
+		private String name;
+		private String login;
+		private String pass;
+
+		public Builder comNome(String name) {
+			this.name = name;
+			return this;
+		}
+
+		public Builder comLogin(String login) {
+			this.login = login;
+			return this;
+		}
+
+		public Builder comSenha(String pass) {
+			this.pass = pass;
+			return this;
+		}
+
+		public User build() {
+			return new User(name, login, pass);
+		}
 	}
 
 }
